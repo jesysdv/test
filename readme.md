@@ -1,15 +1,19 @@
-### Instalación
-Para instalar se debe descargar en este mismo directorio el repositorio de Pantheon del sitio. En este caso, el repositorio remoto del sitio corresponderá a: `src/`.
+### Descripción
+Este repositorio corresponde a la dockerización de la imagen base para los proyectos con Drupal.
+Algunos de los repositorios que acutalmente utilizan esta imagen son:
+- Brigard Urrutia
+- Brigard Castro
 
-Nota: el directorio `src/` se encuentra excluida de los archivos *trackeados* por git (*.gitignore*) [repositorio global].
+### Ejecución
+**Nota:** Para ejecutar el siguiente comando se debe contar con Docker (en ejecución) y con la herramienta de AWS CLI ya configurada y con las credenciales correspondientes.
 
-**Ejemplo: Comandos de instalación**
-```bash
-# Dirigirse a la ruta del proyecto dockerizado
-cd /path/site-docker
+Para realizar la ejecución —es decir, hacer *build* and *push* para la imagen de docker— se deben ejecutar el comando
+`./pushImage.sh <AWS_ACCOUNT_ID> <AWS_DEFAULT_REGION> <IMAGE_NAME>`
 
-# Clonar el repositorio de Pantheon
-git clone [Pantheon-Repo-URL] src/
+Esto hará que se haga *build* de la imagen de Docker, luego que se le asigne el tag adecuado, y finalmente que se suba (*push*) al repositorio de AWS ECR correspondiente.
 
-# Docker build ...
-```
+Los parámetros *AWS_ACCOUNT_ID*, *AWS_DEFAULT_REGION* e *IMAGE_NAME* si no son brindados, tienen valores por defecto, los cuales son:
+
+**AWS_ACCOUNT_ID**: 137435002474 [*Cuenta de clientes*]
+**AWS_DEFAULT_REGION**: us-east-1
+**IMAGE_NAME**: drupal-dockerized
